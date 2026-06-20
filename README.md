@@ -1,4 +1,4 @@
-# Go Business — Referral Dashboard
+# Go Business - Referral Dashboard
 
 A referral management dashboard built with React + Vite. Users sign in, then view
 overview metrics, a service summary, their referral link/code, and a searchable,
@@ -15,15 +15,7 @@ sortable, paginated table of referrals with a detail view per referral.
 
 ```bash
 npm install
-npm run dev       # http://localhost:5173
-```
-
-Other scripts:
-
-```bash
-npm run build      # production build to dist/
-npm run preview    # preview the production build locally
-npm run lint        # ESLint
+npm run dev       
 ```
 
 ## Test credentials
@@ -38,20 +30,20 @@ Password: admin123
 ```
 src/
 ├── components/
-│   ├── Navbar.jsx          # Brand link, Home nav, Log out
-│   ├── Footer.jsx          # Footer brand, About/Privacy links, copyright
-│   └── ProtectedRoute.jsx  # Redirects to /login when jwt_token cookie is absent
+│   ├── Navbar.jsx          
+│   ├── Footer.jsx          
+│   └── ProtectedRoute.jsx  
 ├── pages/
-│   ├── Login.jsx           # Email/password sign-in form
-│   ├── Dashboard.jsx       # Overview, service summary, share referral, referrals table
-│   ├── ReferralDetail.jsx  # /referral/:id detail view
-│   └── NotFound.jsx        # 404 page, reachable without auth
+│   ├── Login.jsx           
+│   ├── Dashboard.jsx       
+│   ├── ReferralDetail.jsx  
+│   └── NotFound.jsx        
 ├── utils/
-│   ├── api.js               # loginRequest() and fetchReferrals() — all network calls
-│   └── format.js             # formatDate() and formatProfit() display helpers
-├── App.jsx                  # <BrowserRouter> + <Routes> (all routes defined here)
-├── main.jsx                  # Renders <App /> only — no router here
-└── index.css                  # Global styles / design tokens
+│   ├── api.js               
+│   └── format.js             
+├── App.jsx                  
+├── main.jsx                  
+└── index.css                  
 ```
 
 ## Routing
@@ -82,21 +74,3 @@ All calls live in `src/utils/api.js`.
   referral row itself, or an object containing a `referrals` array — both shapes are
   handled in `ReferralDetail.jsx`.
 
-## Formatting
-
-- Dates: API's `YYYY-MM-DD` → displayed as `YYYY/MM/DD`.
-- Profit: formatted as USD with no decimal digits (`Intl.NumberFormat`, e.g. `$1,234`).
-
-## Accessibility notes
-
-- Form labels are wired to inputs via `htmlFor`/`id`.
-- Landmark `aria-label`s on the Overview, Service summary, and Share referral sections,
-  and on the primary nav (`Primary`) and footer nav (`Footer`).
-- The dashboard error message uses `role="alert"` so screen readers announce failures.
-- Table rows are keyboard-activatable (`tabIndex`, `Enter`/`Space`) in addition to click.
-
-## Deployment
-
-Deployed on Vercel as a standard Vite SPA. Build command: `npm run build`. Output
-directory: `dist`. Because this is a client-side-routed SPA, Vercel's default rewrite
-to `index.html` handles deep links like `/referral/5` correctly.
